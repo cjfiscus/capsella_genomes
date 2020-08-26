@@ -8,24 +8,22 @@
 #SBATCH --mail-user=cfisc004@ucr.edu
 #SBATCH --mail-type=ALL
 #SBATCH --job-name="gvcf"
-#SBATCH -p intel
-#SBATCH --array=111
+#SBATCH -p koeniglab 
+#SBATCH --array=176
 
 # software dependencies
 # gatk 4.1.8.1
 
 # SET VARIABLES
-REFERENCE=/rhome/cfisc004/shared/GENOMES/CAPSELLA/FINISHED_v2/data/assemblies/Cr145_plus_manual_correction.fasta
-SPP=Cr
+REFERENCE=/rhome/cfisc004/shared/GENOMES/CAPSELLA/FINISHED_v2/data/assemblies/Cbp2-2_plus_manual_correction.fasta
+SPP=Cbp
 RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results
 SEQLIST=../../data/Capsella_WGS_Sample_List.txt
-#TEMP_DIR=./
 TEMP_DIR=/scratch/cfisc004
 THREADS=4
 
 #### PIPELINE #####
 # parse sample file
-#NAME=$(head -n "$SLURM_ARRAY_TASK_ID" "$SEQLIST" | tail -n1 | cut -f2)
 NAME=$(head -n "$SLURM_ARRAY_TASK_ID" "$SEQLIST" | tail -n1 | cut -f4)
 BAMIN="$RESULTS"/alignments/"$SPP"/"$NAME".bam
 

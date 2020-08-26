@@ -44,13 +44,7 @@ SE33	../../results/gvcf/Cbp/SE33.g.vcf.gz
 SH7	../../results/gvcf/Cbp/SH7.g.vcf.gz
 PL	../../results/gvcf/Cbp/SRR1746837.g.vcf.gz
 SE14	../../results/gvcf/Cbp/SRR1751470.g.vcf.gz
-wt-msu	../../results/gvcf/Cbp/SRR5412134.g.vcf.gz
-wt-msu	../../results/gvcf/Cbp/SRR5412135.g.vcf.gz
-wt-msu	../../results/gvcf/Cbp/SRR5412136.g.vcf.gz
-wt-msu	../../results/gvcf/Cbp/SRR5412137.g.vcf.gz
-wt-msu	../../results/gvcf/Cbp/SRR5803007.g.vcf.gz
-wt-msu	../../results/gvcf/Cbp/SRR5803008.g.vcf.gz
-wt-msu	../../results/gvcf/Cbp/SRR5803009.g.vcf.gz
+wt-msu	../../results/gvcf/Cbp/wt-msu.g.vcf.gz
 STA4	../../results/gvcf/Cbp/STA4.g.vcf.gz
 STJ2	../../results/gvcf/Cbp/STJ2.g.vcf.gz
 TACH-CHIN14	../../results/gvcf/Cbp/TACH-CHIN14.g.vcf.gz

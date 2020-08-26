@@ -65,16 +65,5 @@
 984	../../results/gvcf/CbpCr/984.g.vcf.gz
 987-25	../../results/gvcf/CbpCr/987-25.g.vcf.gz
 RIAH	../../results/gvcf/CbpCr/RIAH.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207609.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207610.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207611.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207612.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207619.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207620.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207621.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207622.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207623.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207624.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207625.g.vcf.gz
-Monte_Gargano	../../results/gvcf/CbpCr/SRR207626.g.vcf.gz
+Monte_Gargano	../../results/gvcf/CbpCr/Monte_Gargano.g.vcf.gz
 TAAL-1	../../results/gvcf/CbpCr/TAAL-1.g.vcf.gz
