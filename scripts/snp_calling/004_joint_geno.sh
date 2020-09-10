@@ -3,21 +3,21 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
 #SBATCH --mem=64G
-#SBATCH --output=./std/CbpCr%j.stdout
-#SBATCH --error=./std/CbpCr%j.stderr
+#SBATCH --output=./std/Cbp%j.stdout
+#SBATCH --error=./std/Cbp%j.stderr
 #SBATCH --mail-user=cfisc004@ucr.edu
 #SBATCH --mail-type=ALL
 #SBATCH --time=5-00:00:00
 #SBATCH --job-name="vcf"
 #SBATCH -p koeniglab
-#SBATCH --array=9-16
+#SBATCH --array=1-16
 
 # software dependencies
 # gatk 4.1.8.1
 
 # SET VARIABLES
-SPP=CbpCr
-REFERENCE=/rhome/cfisc004/shared/GENOMES/CAPSELLA/FINISHED_v2/data/assemblies/Cbp2-2Cr_plus_manual_correction.fasta
+SPP=Cbp
+REFERENCE=/rhome/cfisc004/shared/GENOMES/CAPSELLA/FINISHED_v2/data/assemblies/Cbp2-2_plus_manual_correction.fasta
 RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
 TEMP_DIR=/scratch/cfisc004/"$RANDOM"
 THREADS=4

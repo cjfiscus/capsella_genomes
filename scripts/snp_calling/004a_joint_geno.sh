@@ -3,21 +3,21 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
 #SBATCH --mem=64G
-#SBATCH --output=./std/Cr_old%j.stdout
-#SBATCH --error=./std/Cr_old%j.stderr
+#SBATCH --output=./std/Cbp%j.stdout
+#SBATCH --error=./std/Cbp%j.stderr
 #SBATCH --mail-user=cfisc004@ucr.edu
 #SBATCH --mail-type=ALL
 #SBATCH --time=5-00:00:00
 #SBATCH --job-name="vcf"
 #SBATCH -p koeniglab
-#SBATCH --array=11
+#SBATCH --array=17
 
 # software dependencies
 # gatk 4.1.8.1
 
 # SET VARIABLES
-SPP=Cr_old
-REFERENCE=/rhome/cfisc004/shared/GENOMES/CAPSELLA/FINISHED_v2/data/assemblies/Crubella_474_v1.fa
+SPP=Cbp
+REFERENCE=/rhome/cfisc004/shared/GENOMES/CAPSELLA/FINISHED_v2/data/assemblies/Cbp2-2_plus_manual_correction.fasta
 RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
 TEMP_DIR=/scratch/cfisc004/"$RANDOM"
 THREADS=4
@@ -39,8 +39,14 @@ gatk --java-options "-Xmx16g -Xms4g" GenomicsDBImport \
         -XL SCF_6 \
         -XL SCF_7 \
         -XL SCF_8 \
-        -XL SCF_9 \
-        -XL SCF_10 
+	-XL SCF_9 \
+	-XL SCF_10 \
+	-XL SCF_11 \
+	-XL SCF_12 \
+	-XL SCF_13 \
+	-XL SCF_14 \
+	-XL SCF_15 \
+	-XL SCF_16
 
 # joint Genotypying
 gatk --java-options "-Xmx16g" GenotypeGVCFs \
