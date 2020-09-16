@@ -85,11 +85,11 @@ echo "GATK best practices filter" >> "$RESULTS"/log.txt
 echo $(bcftools query -f'%CHROM %POS\n' "$RESULTS"/"$SPP"_filter1.vcf.gz | wc -l) \
 	>> "$RESULTS"/log.txt
 
-echo "biallelic sites, het, and missing data filter"
+echo "biallelic sites, het, and missing data filter" >> "$RESULTS"/log.txt
 echo $(bcftools query -f'%CHROM %POS\n' "$RESULTS"/"$SPP"_filter2.vcf.gz | wc -l) \
 	>> "$RESULTS"/log.txt
 
-echo "depth filter"
+echo "depth filter " >> "$RESULTS"/log.txt
 echo $(bcftools query -f'%CHROM %POS\n' "$RESULTS"/"$SPP"_filter3.vcf.gz | wc -l) \
 	>> "$RESULTS"/log.txt
 
