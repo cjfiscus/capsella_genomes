@@ -1,7 +1,5 @@
 1718-9	../../results/gvcf/CbpCo/1718-9.g.vcf.gz
 1719-1	../../results/gvcf/CbpCo/1719-1.g.vcf.gz
-1719-3	../../results/gvcf/CbpCo/1719-3.g.vcf.gz
-1719-4	../../results/gvcf/CbpCo/1719-4.g.vcf.gz
 1938-1_1	../../results/gvcf/CbpCo/1938-1_1.g.vcf.gz
 1939-1_6	../../results/gvcf/CbpCo/1939-1_6.g.vcf.gz
 1940-1_1	../../results/gvcf/CbpCo/1940-1_1.g.vcf.gz
@@ -21,9 +19,6 @@
 2006-01	../../results/gvcf/CbpCo/2006-01.g.vcf.gz
 2007-03	../../results/gvcf/CbpCo/2007-03.g.vcf.gz
 2008-01	../../results/gvcf/CbpCo/2008-01.g.vcf.gz
-2008-07-01	../../results/gvcf/CbpCo/2008-07-01.g.vcf.gz
-2008-09-01	../../results/gvcf/CbpCo/2008-09-01.g.vcf.gz
-Co2008-1	../../results/gvcf/CbpCo/Co2008-1.g.vcf.gz
 FY1	../../results/gvcf/CbpCo/FY1.g.vcf.gz
 GUB-RUS5	../../results/gvcf/CbpCo/GUB-RUS5.g.vcf.gz
 PAR-RUS	../../results/gvcf/CbpCo/PAR-RUS.g.vcf.gz

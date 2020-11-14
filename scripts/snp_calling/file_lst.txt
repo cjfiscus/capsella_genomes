@@ -1,0 +1,17 @@
+../../results/1.vcf.gz
+../../results/2.vcf.gz
+../../results/3.vcf.gz
+../../results/4.vcf.gz
+../../results/5.vcf.gz
+../../results/6.vcf.gz
+../../results/7.vcf.gz
+../../results/8.vcf.gz
+../../results/9.vcf.gz
+../../results/10.vcf.gz
+../../results/11.vcf.gz
+../../results/12.vcf.gz
+../../results/13.vcf.gz
+../../results/14.vcf.gz
+../../results/15.vcf.gz
+../../results/16.vcf.gz
+../../results/17.vcf.gz

@@ -45,7 +45,6 @@ tabix "$RESULTS"/"$SPP"_filtered.vcf.gz
 # Co: 1981-10
 SPP=Co
 RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
--s ^1981-10
 bcftools view -s ^1981-10 "$RESULTS"/"$SPP"_filter3.vcf.gz | bgzip > "$RESULTS"/"$SPP"_filtered.vcf.gz
 tabix "$RESULTS"/"$SPP"_filtered.vcf.gz
 
@@ -53,4 +52,16 @@ tabix "$RESULTS"/"$SPP"_filtered.vcf.gz
 SPP=CbpCo
 RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
 bcftools view -s ^1981-10 "$RESULTS"/"$SPP"_filter3.vcf.gz | bgzip > "$RESULTS"/"$SPP"_filtered.vcf.gz
+tabix "$RESULTS"/"$SPP"_filtered.vcf.gz
+
+# CbpCo_Cbp: 1981-10, BEL5, KYRG-3-14
+SPP=CbpCo_Cbp
+RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
+bcftools view -s ^1981-10,BEL5,KYRG-3-14 "$RESULTS"/"$SPP"_filter3.vcf.gz | bgzip > "$RESULTS"/"$SPP"_filtered.vcf.gz
+tabix "$RESULTS"/"$SPP"_filtered.vcf.gz
+
+# CbpCr_Cbp: 104.12, BEL5, KYRG-3-14
+SPP=CbpCr_Cbp
+RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
+bcftools view -s ^104.12,BEL5,KYRG-3-14 "$RESULTS"/"$SPP"_filter3.vcf.gz | bgzip > "$RESULTS"/"$SPP"_filtered.vcf.gz
 tabix "$RESULTS"/"$SPP"_filtered.vcf.gz

@@ -1,0 +1,8 @@
+../../results/vcf/CbpCo/1.vcf.gz
+../../results/vcf/CbpCo/2.vcf.gz
+../../results/vcf/CbpCo/3.vcf.gz
+../../results/vcf/CbpCo/4.vcf.gz
+../../results/vcf/CbpCo/5.vcf.gz
+../../results/vcf/CbpCo/6.vcf.gz
+../../results/vcf/CbpCo/7.vcf.gz
+../../results/vcf/CbpCo/8.vcf.gz

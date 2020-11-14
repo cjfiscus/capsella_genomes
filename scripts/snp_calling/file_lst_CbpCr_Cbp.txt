@@ -1,0 +1,8 @@
+../../results/vcf/CbpCr_Cbp/9.vcf.gz
+../../results/vcf/CbpCr_Cbp/10.vcf.gz
+../../results/vcf/CbpCr_Cbp/11.vcf.gz
+../../results/vcf/CbpCr_Cbp/12.vcf.gz
+../../results/vcf/CbpCr_Cbp/13.vcf.gz
+../../results/vcf/CbpCr_Cbp/14.vcf.gz
+../../results/vcf/CbpCr_Cbp/15.vcf.gz
+../../results/vcf/CbpCr_Cbp/16.vcf.gz

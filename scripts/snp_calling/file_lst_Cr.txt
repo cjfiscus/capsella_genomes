@@ -1,0 +1,17 @@
+../../results/vcf/Cr/1.vcf.gz
+../../results/vcf/Cr/2.vcf.gz
+../../results/vcf/Cr/3.vcf.gz
+../../results/vcf/Cr/4.vcf.gz
+../../results/vcf/Cr/5.vcf.gz
+../../results/vcf/Cr/6.vcf.gz
+../../results/vcf/Cr/7.vcf.gz
+../../results/vcf/Cr/8.vcf.gz
+../../results/vcf/Cr/9.vcf.gz
+../../results/vcf/Cr/10.vcf.gz
+../../results/vcf/Cr/11.vcf.gz
+../../results/vcf/Cr/12.vcf.gz
+../../results/vcf/Cr/13.vcf.gz
+../../results/vcf/Cr/14.vcf.gz
+../../results/vcf/Cr/15.vcf.gz
+../../results/vcf/Cr/16.vcf.gz
+../../results/vcf/Cr/17.vcf.gz

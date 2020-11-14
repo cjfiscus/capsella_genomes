@@ -19,7 +19,7 @@ module load plink/1.90b3.38
 module load vcftools/0.1.15
 
 ## define vars
-SPP=Cr_old
+SPP=CbpCo_Cbp
 RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
 THREADS=4
 
@@ -39,7 +39,7 @@ bcftools filter -e'FMT/DP<3' -S . "$RESULTS"/"$SPP"_filter1.vcf.gz \
 ##########
 # filter sites with > 5% het & > 5% missing data
 ## calculate proportion het per site with plink
-if [[ "$SPP" == "CbpCr" ]] || [[ "$SPP" == "Cr" ]] || [[ "$SPP" == "Cr_old" ]]
+if [[ "$SPP" == "CbpCr" ]] || [[ "$SPP" == "Cr" ]] || [[ "$SPP" == "Cr_old" ]] || [[ "$SPP" == "CbpCr_Cbp" ]]
 then
 # exclude grandiflora from het calcs
 	plink --vcf "$RESULTS"/temp.vcf --remove ../../data/Cg.txt \
@@ -98,5 +98,3 @@ echo $(bcftools query -f'%CHROM %POS\n' "$RESULTS"/"$SPP"_filter3.vcf.gz | wc -l
 vcftools --gzvcf "$RESULTS"/"$SPP"_filter3.vcf.gz --het --stdout \
 	> "$RESULTS"/"$SPP"_het.txt
 Rscript 007c_plot_het.R "$RESULTS"/"$SPP"_het.txt "$RESULTS"/"$SPP"
-
-# manually remove individuals with too much het? 

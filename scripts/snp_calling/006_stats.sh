@@ -16,7 +16,7 @@
 module load bcftools/1.10
 
 ## vars
-SPP=Cbp
+SPP=CbpCo_Cbp
 RESULTS=/rhome/cfisc004/bigdata/projects/capsella_genomes/results/vcf/"$SPP"
 THREADS=4
 
