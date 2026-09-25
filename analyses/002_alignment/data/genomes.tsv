@@ -1,0 +1,9 @@
+Cbp2-2	/rhome/cfisc004/shared/CAPSELLA_GENOMES/genomes/Cbp2-2_plus_manual_correction.fasta	16	Cbp	given
+Co39	/rhome/cfisc004/shared/CAPSELLA_GENOMES/genomes/Co39_plus_manual_correction.fasta	8	Co	diploid
+Cr145	/rhome/cfisc004/shared/CAPSELLA_GENOMES/genomes/Cr145_plus_manual_correction.fasta	8	Cr	diploid
+CbpChinese	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_BP_CHINESE/GCA_036452645.1_ASM3645264v1_genomic.fna	16	Cbp	fixed_cbp
+CbpRussian	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_BP_RUSSIAN/GCA_001974645.2_ASM197464v2/GCA_001974645.2_ASM197464v2_genomic.fna	16	Cbp	cbp
+CgMosher	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_GRANDIFLORA_MOSHER/Cgrandiflora_hapA_RAM_v1.1.fa.gz	8	Cr	diploid
+CoMosher	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_ORIENTALIS_MOSHER/Corientalis_RAM_v1.1.fa.gz	8	Co	diploid
+CrMosher	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_RUBELLA_MOSHER/Crubella_RAM_v1.1.fa.gz	8	Cr	diploid
+CoRussian	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_ORIENTALIS_RUSSIAN/Corientalis_genome.fasta.gz	8	Co	diploid
