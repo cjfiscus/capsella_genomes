@@ -1,0 +1,104 @@
+# 001_edta — TE annotation with EDTA + a joint (pan) TE library
+
+Runs EDTA 2.3.0 separately on 7 Capsella-clade genomes, builds a joint TE
+library across all of them with panEDTA, then reannotates every genome
+with that joint library. See repo-root `CLAUDE.md` for genome/cluster/
+software background.
+
+## Genomes (data/genomes.tsv)
+
+7 genomes, one row each: `name  fasta_path  gff_path  seqid_map_or_-`
+
+| name | source |
+|---|---|
+| Cbp2-2 | this project's Cbp assembly, run as one genome (both subgenomes; SCF_1-8=Co, SCF_9-16=Cr) |
+| Co39 | this project's Co assembly |
+| Cr145 | this project's Cr assembly |
+| CbpRussian | GCA_001974645.2 + Kasianov et al. 2024 annotation (Eurasian Cbp) |
+| CgMosher | C. grandiflora, Mosher lab RAM v1.1 |
+| CoMosher | C. orientalis, Mosher lab RAM v1.1 |
+| CrMosher | C. rubella, Mosher lab RAM v1.1 |
+
+Dropped (2026-09-29): CbpChinese, CoRussian. Earlier partial runs (all with
+--threads 1, see below) were deleted. Not included:
+`Crubella_474_v1.fa`, `NP_1.0.fa` (external references).
+
+## Pipeline
+
+1. **`000_prep_genomes.sh`** (array 1-7) — trim FASTA headers, remap GFF seqids
+   if a map is given, keep only GFF features on seqids present in the FASTA,
+   extract CDS with `gffread -x`. Writes `results/00_prep/<name>.{fa,cds.fa}`.
+2. **`001_edta.sh`** (array 1-7) — `EDTA.pl --anno 1 --sensitive 0` per genome
+   in `results/01_edta/<name>/`, `--cpus-per-task=32`.
+   **Gotcha:** the original version requested `--ntasks=32` only, so
+   `SLURM_CPUS_PER_TASK` was 1 and EDTA ran `--threads 1` for days. Always use
+   `--cpus-per-task`; the script now fails if it is unset. Co39, Cr145 and the
+   Mosher genomes were run at 1 thread (valid, just slow).
+3. **`002_panlib_reanno.sh`** (single job) — `panEDTA.sh -a 1 -f 3` over the 7
+   genomes: joint library `results/02_panlib/genomes.list.panEDTA.TElib.fa`
+   and per-genome reannotation. Single job because panEDTA.sh loops
+   internally and needs exact intermediates from step 2.
+
+One-off fix for CgMosher (not in `submit_all.sh`): its 40-char scaffold names
+made EDTA's TE IDs (`name:start..end#class`) exceed RepeatMasker's 50-char
+limit, so `EDTA.pl --step final` silently failed in 002 (panEDTA.sh still
+exits 0). `003_cgmosher_final_retry.sh` retried unchanged and failed the same
+way. Fix: `004_cgmosher_rename.sh` makes a renamed copy
+(`lcl_Scaffold_<N>_1_contigs_length_<L>` -> `lcl_Scaffold_<N>`, mapping in
+`results/03_cgmosher_renamed/chrmap.tsv`), and
+`005_cgmosher_renamed_edta_panlib.sh` re-runs, on the renamed copy, (1)
+standalone EDTA, (2) RepeatMasker with the existing joint library, (3)
+`--step final`. This is a reannotation with the joint library, NOT a library
+rebuild: the joint library (built in step 3 from the original standalone
+CgMosher library, which was fine) was not regenerated, so the renamed
+standalone CgMosher library is not in it.
+
+## Results summary
+
+TE fraction of genome, standalone EDTA vs reannotation with the joint library:
+
+| Genome | Length (Mb) | Standalone | Joint library |
+|---|---|---|---|
+| Cbp2-2 | 278 | 21.97% | 21.20% |
+| Co39 | 136 | 18.18% | 18.55% |
+| Cr145 | 159 | 15.56% | 27.53% |
+| CbpRussian | 362 | 16.76% | 38.07% |
+| CgMosher | 278 | 45.99% (unrenamed) | 46.60% (renamed copy) |
+| CoMosher | 185 | 36.32% | 38.40% |
+| CrMosher | 168 | 26.52% | 28.18% |
+
+Joint library: 1508 sequences. Cr145 and CbpRussian gain the most, probably
+because the joint library has families their own libraries missed (not
+tested). The Mosher assemblies are ~45-80 Mb larger than ours for the same
+species, almost all of it extra TE bp; unresolved whether ours collapse
+repeats or theirs contain redundancy.
+
+## Running
+
+```
+cd scripts
+bash submit_all.sh
+```
+
+Submits the full chain with `--dependency=afterok`. Or submit steps
+individually with `sbatch <script>` once the previous step's outputs exist.
+Watch with `squeue -u $USER`; logs land in `scripts/std/`.
+
+## Outputs
+
+```
+results/
+  00_prep/<name>.{fa,cds.fa}
+  01_edta/<name>/                        # standalone per-genome EDTA run
+  02_panlib/
+    genomes.list.panEDTA.TElib.fa        # the joint TE library
+    <name>.fa.mod.EDTA.anno/             # per-genome reannotation w/ joint lib
+  03_cgmosher_renamed/                   # CgMosher with shortened scaffold IDs
+    chrmap.tsv                           # old -> new scaffold names
+    CgMosher.fa.mod.EDTA.*               # standalone EDTA + joint-lib reannotation
+```
+
+Per-genome files of interest in each `*.EDTA.anno/` dir: `*.TEanno.sum`
+(summary table), `*.TEanno.gff3` (annotation), `*.TElib.fa` (library),
+`*.intact.gff3`. Check `TEanno.sum` exists for every genome: panEDTA.sh
+exits 0 even when a genome's final step fails.
