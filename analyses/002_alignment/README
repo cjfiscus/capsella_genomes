@@ -104,6 +104,18 @@ seqkit). Smoke test: `scripts/test_env.sh`.
    the genome is the odd one out; k=1 means only one partner differs from it,
    i.e. the partner is the odd one out.
 
+6. **`004a_prep_te.py`**, **`004_te_overlap.py`** — plain python3, run by hand from
+   the analysis dir (`python3 scripts/004a_prep_te.py; python3 scripts/004_te_overlap.py`).
+   Overlap syri regions with the `001_edta` panlib TE annotation
+   (`001_edta/results/02_panlib/*.EDTA.TEanno.gff3`; CgMosher from
+   `03_cgmosher_renamed`). `004a` writes merged TE intervals per `01_norm` genome
+   (`results/04_te/<name>.te.bed`): it decodes EDTA's `_J...` seqids by in-order
+   length match of `<g>.fa.mod` to `<g>.fa` (asserted), keeps only the chrmap
+   chromosomes of each subgenome and flips `-`-strand chromosomes. `004` then
+   writes `results/04_te/te_overlap.tsv` (TE bp / fraction per pair, syri type,
+   ref/qry side). Only genomes kept in 001_edta (not CbpChinese, CoRussian) →
+   16 of the 30 pairs.
+
 ## Running
 
 ```
@@ -160,8 +172,16 @@ From `pair_metrics.tsv` (SNPs per kb of syntenic reference sequence):
   inversion from the chain plots is not reproduced by the `INV` rows (closest:
   Cr145 SCF_7 16.6-19.1 Mb, 2.5 Mb, seen only vs CbpChineseCr); it may be a
   chained/multi-part event in plotsr.
-- Not yet done: check unaligned/diverged regions against the `001_edta` TE
-  annotation (are they repeats?), SV polarization (#7), diploid baseline (#9).
+- **TE content of regions** (`te_overlap.tsv`, 16 pairs with 001_edta annotation):
+  syntenic sequence is 9-13% TE in every pair/side (sanity baseline). Unaligned
+  (NOTAL) is 20-80% TE, so unaligned sequence is largely repeats; "highly
+  diverged" (HDR) is only 13-49% TE (Co39 vs Cbp2-2Co: NOTAL 22 Mb ~40%, HDR
+  47 Mb ~17%), so most HDR is not annotated TE. DUP/TRANS/INVDP/INVTR calls are
+  60-87% TE in the pair checked in detail (Co39 vs Cbp2-2Co). Highest TE
+  fractions are on the Mosher assemblies' side (CoMosher/CgMosher NOTAL ~55-80%),
+  consistent with their extra TE bp in 001. Only the Co39 vs Cbp2-2Co pair has
+  been checked per SV type.
+- Not yet done: SV polarization (#7), diploid baseline (#9).
 
 ## Outputs
 
@@ -173,4 +193,5 @@ results/
   02_syri/<ref>_vs_<qry>/          syri.out / .summary / .vcf / plotsr.png
   03_summary/                      sv_summary.tsv pair_metrics.tsv sv_size_filtered.tsv {Co,Cr}_chain.png
                                    inversion_attribution.tsv
+  04_te/                           <name>.te.bed  te_overlap.tsv  Cbp2-2.idmap.tsv (+ decoded gff3)
 ```
