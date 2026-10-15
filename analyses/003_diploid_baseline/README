@@ -30,3 +30,7 @@ SNP/kb, median (range):
   the denominator is syntenic bp (aligned sequence only, so divergent regions
   are under-represented); Co within-species pairs may be closely related
   accessions; assembly differences (CoMosher 181 Mb vs Co39 135 Mb) affect SV counts.
+
+## Plots
+    Rscript scripts/001_plots.R     # -> results/plots/snp_per_kb.png|pdf
+SNP/kb per pair by class, Co and Cr sets in separate panels; CgMosher pairs marked.
