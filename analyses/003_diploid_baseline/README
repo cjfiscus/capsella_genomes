@@ -1,0 +1,36 @@
+# 003_diploid_baseline — within-species diploid divergence vs. Cbp (inventory B1 #9)
+
+Reuses `../002_alignment/results/03_summary/pair_metrics.tsv` (no new alignment).
+Asks what "normal" divergence between diploid accessions looks like, to judge
+whether Cbp-subgenome vs diploid-donor divergence is unusual.
+
+    cd analyses/003_diploid_baseline
+    python3 scripts/000_baseline.py     # plain python3; writes results/
+
+Outputs (`results/`, gitignored): `pair_baseline.tsv` (per pair: SNP/kb and
+indel/kb over syntenic reference bp, large SV (INV+TRANS+DUP rows)/Mb,
+min syntenic fraction of the two genomes) and `class_summary.tsv` (median/min/max
+per subgenome set x class: diploid-diploid, Cbp-diploid, Cbp-Cbp).
+
+## First look (preliminary, descriptive only)
+SNP/kb, median (range):
+
+| set | diploid-diploid | Cbp-diploid | Cbp-Cbp |
+|---|---|---|---|
+| Co (Co39, CoMosher, CoRussian) | 0.9 (0.8-1.2) | 5.1 (4.0-14.2) | 8.3 (3.0-9.4) |
+| Cr (Cr145, CrMosher, CgMosher) | 8.9 (4.2-13.6) | 9.3 (7.0-18.1) | 9.2 (3.7-9.9) |
+
+- Co: Cbp's Co subgenome is ~4-5x more diverged from the Co diploids than the
+  Co diploids are from each other. CbpChinese drives the high end (10-14).
+- Cr: the "diploid" baseline already spans 4-14 SNP/kb because it includes
+  CgMosher (*C. grandiflora*, outcrosser; Cr descends from Cg), so Cbp-vs-diploid
+  is within the diploid range. Cr145 vs CrMosher alone (4.2) is the within-species
+  baseline; Cg pairs are the more relevant comparison for the Cr progenitor.
+- Caveats: n=3 pairs per class, pairs are not independent (shared genomes);
+  the denominator is syntenic bp (aligned sequence only, so divergent regions
+  are under-represented); Co within-species pairs may be closely related
+  accessions; assembly differences (CoMosher 181 Mb vs Co39 135 Mb) affect SV counts.
+
+## Plots
+    Rscript scripts/001_plots.R     # -> results/plots/snp_per_kb.png|pdf
+SNP/kb per pair by class, Co and Cr sets in separate panels; CgMosher pairs marked.
