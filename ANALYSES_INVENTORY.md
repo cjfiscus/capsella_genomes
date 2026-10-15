@@ -150,6 +150,32 @@ as checklist items:
 
 ---
 
+## Part C — Newly produced analyses (this repo, Sep–Oct 2026)
+
+Analyses actually run under `analyses/NNN_*` for the Part B1 comparative-genomics section; none of these
+are in the manuscript yet, and Part A (legacy) is unchanged. All results are **preliminary/descriptive**.
+Each lives on its own git branch (stacked 002 → 003 → 004, not merged/pushed as of 2026-10-14);
+002–004 are in worktree `capsella_genomes_002`, 001 in this checkout. READMEs have the detail.
+
+| Analysis | B1 item | Tool | Data | Status | Key result | Open items |
+|---|---|---|---|---|---|---|
+| `001_edta` | #4 | EDTA 2.3.0 + panEDTA joint library | 7 genomes (Cbp2-2, Co39, Cr145, CbpRussian, CgMosher, CoMosher, CrMosher); CbpChinese and CoRussian dropped | Done | Panlib TE fraction: Cbp2-2 21.2%, Co39 18.6%, Cr145 27.5%, CbpRussian 38.1%, CgMosher 46.6%, CoMosher 38.4%, CrMosher 28.2%. Extra length in Mosher/Russian assemblies is mostly extra TE bp | CgMosher needed a renamed copy (RepeatMasker 50-char ID limit). Whether our assemblies collapse repeats is unresolved. Subgenome split of Cbp TE results never run |
+| `002_alignment` | #2 (+ part of #11) | minimap2 (asm10) + SyRI 1.8.2 + plotsr | 9 genomes, Cbp split into Co/Cr subgenomes; 30 within-set pairs | Done | Chained plotsr figures; >= 1 Mb inversions attributed per genome; TE overlap for the 16 pairs with 001 annotation: SYN 9-13% TE, NOTAL 20-80%, HDR 13-49% | 28/30 per-pair figures not inspected. CbpChinese subgenome assignment (A = Cr, B = Co) is evidence-based with modest margins. Private inversions in CbpChinese/CgMosher not checked against reads/Hi-C. Why HDR is mostly non-TE is open |
+| `003_diploid_baseline` | #9 | Reuses 002 `pair_metrics.tsv` | Diploid-diploid vs Cbp-diploid vs Cbp-Cbp pairs | Done | SNP/kb median: Co diploids 0.9 vs Cbp-Co 5.1 (CbpChinese 10-14); Cr set baseline spans 4-14 because CgMosher (outcrosser) is included, Cr145 vs CrMosher = 4.2 | n = 3 pairs per class, not independent; denominator is syntenic bp only |
+| `004_sv_polarization` | #7 | Custom two-frame polarization on SyRI output (`001_polarize.py`); 27 new asm10 cross alignments | 30 focal pairs, outgroups = diploids of the other set (Cbp x Cbp: within-set diploids) | Done | Indels >= 50 bp ins:del: Cbp-Co 0.91, Co diploids 1.75, Cbp-Cr 0.79, Cr/Cg diploids 1.15 (Cbp subgenomes deletion-biased vs diploids) | Bias not tested for significance (by size class, per pair, excluding Mosher pairs, size-normalized). ~47% of diploid x Cbp indels ambiguous; ~62% of decided calls are single-frame. INV/TRANS calls mostly ambiguous, unreviewed. Per-pair ins:del for Cbp-Co is bimodal (~0.35 vs ~1.5) |
+
+Plots: `analyses/003_diploid_baseline/results/plots/` and `analyses/004_sv_polarization/results/02_plots/`
+(gitignored; regenerate with `scripts/001_plots.py` / `scripts/002_plots.py`).
+
+**B1 checklist status:** #2, #4, #7, #9 done (preliminary); #11 partial (plotsr chain figures only);
+#1, #3, #5, #6, #8, #10 not started.
+
+**Deviation from B1 #7 as written:** outgroups were not Co-Mosher/Co-Russia/Cr-Mosher. The scheme used is
+the other set's diploids (Cr/Cg for Co-set pairs, Co for Cr-set pairs), within-set diploids for Cbp x Cbp;
+within-set Co diploids were rejected as outgroups to Cbp-Co (0.9 vs ~5 SNP/kb).
+
+---
+
 ## Notes
 
 - This document lists analyses only. Writing/formatting/consistency/deposition items remain in
