@@ -21,7 +21,7 @@ set -euo pipefail
 export PYTHONUNBUFFERED=1
 
 # SET VARIABLES
-LIST=../data/pairs.tsv
+LIST=${LIST:-../data/pairs.tsv}      # overridable, e.g. 004_sv_polarization cross-species pairs
 NORM=../results/01_norm
 OUTROOT=${OUTROOT:-../results/02_syri}     # overridable, e.g. for preset tests
 PRESET=${PRESET:-asm10}            # one preset for all 30 pairs so SV counts stay comparable. asm10 chosen over asm20 from pilots on Co39_vs_Cbp2-2Co and Cr145_vs_CgMosher: more aligned, no loss on the most divergent pair (~0.9% syntenic SNP density), faster; SV counts (esp. translocations/dups) are preset-dependent

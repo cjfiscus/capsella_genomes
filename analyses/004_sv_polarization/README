@@ -1,0 +1,78 @@
+# 004_sv_polarization — outgroup polarization of SyRI SVs (inventory B1 #7)
+
+Decides, for each SV in the 30 pairs of `../002_alignment`, which of the two genomes
+carries the change (insertion vs deletion on which lineage), using genomes outside the
+pair as outgroups. Fixes the reference-dependent ins/del asymmetry.
+
+## Design
+- Focal pairs: the 30 within-set pairs of 002 (diploid x diploid, diploid x Cbp subgenome,
+  Cbp x Cbp). Events: syri INS/DEL >= 50 bp; INV/TRANS/INVTR >= 50 bp. DUP/INVDP are
+  counted but not polarized.
+- Outgroups: diploid x diploid and diploid x Cbp use the diploids of the *other* set
+  (Cr/Cg for Co pairs, Co for Cr pairs); Cbp x Cbp uses the within-set diploids.
+  Within-set Co diploids are not outgroups to Cbp-Co (003: Cbp-Co is ~5 SNP/kb from them,
+  they are 0.9 apart).
+- New alignments (asm10, run with 002's `002_align_syri.sh` via `LIST`/`OUTROOT`/`PRESET`
+  overrides), all in `results/00_cross_syri/`:
+  - 9 Co diploid x Cr/Cg diploid pairs (`data/pairs_cross.tsv`; summary in `results/00_cross_summary/`)
+  - 18 Cbp subgenome x opposite-set diploid pairs (`data/pairs_cbp_cross.tsv`)
+  - preset pilot (Co39 vs Cr145, `results/pilot_asm10|asm20`): asm10 gave 105 vs 92 Mb
+    syntenic and 24 vs 38 Mb unaligned, so asm10 for all.
+
+## Method (`scripts/001_polarize.py`)
+Each event is expressed in the coordinates of a frame genome X (A or B of the pair) and
+tested against X-vs-outgroup alignments:
+- carrier = X: outgroup lacks it if >=70% of the interval lies in an X-only indel of the
+  X-vs-O alignment -> insertion on X; outgroup has it if >=70% is in aligned blocks
+  (SYNAL/INVAL/TRANSAL/INVTRAL/DUPAL/INVDPAL) -> deletion on the other genome.
+- carrier = other genome: outgroup has an insertion of similar size (x0.5-2) within 50 bp
+  -> deletion on X; flanks aligned with no indel -> insertion on the other genome.
+- INV/TRANS/INVTR: O syntenic over the interval -> change on the other genome; O has the same
+  SV type -> change on X.
+- Per frame, the consensus is the unique plurality over 3 outgroups; the two frames are
+  then reconciled: `both` agree, `A_frame_only`/`B_frame_only`, `conflict`, or `none`.
+- HDR blocks are NOT counted as "outgroup has it" (they are diverged and TE-rich; counting
+  them made F-carried events look like deletions on the other genome).
+- Why two frames: with a single frame, F-lineage changes need an explicit breakpoint in
+  the F-vs-O alignment while G-lineage changes are the default, giving a ~4:1 skew toward G
+  even for symmetric diploid pairs. Two-frame reconciliation removes it (diploid-diploid
+  ins/del now ~1:1 between lineages).
+
+Outputs (`results/`, gitignored): `01_polarized/<pair>.tsv` (per event, per-outgroup calls
+for both frames, final call + confidence) and `polarization_summary.tsv`.
+
+    cd analyses/004_sv_polarization
+    python3 scripts/001_polarize.py ../002_alignment/data/pairs.tsv \
+        ../002_alignment/results/02_syri results/00_cross_syri results
+
+## First look (preliminary)
+Indels >= 50 bp, final calls with a decided lineage, diploid x Cbp pairs, summed over
+pairs (not independent):
+
+| lineage | deletions | insertions | ins:del |
+|---|---|---|---|
+| Cbp-Co | 4787 | 4341 | 0.91 |
+| Co diploids | 4258 | 7451 | 1.75 |
+| Cbp-Cr | 4360 | 3460 | 0.79 |
+| Cr/Cg diploids | 5899 | 6802 | 1.15 |
+
+Cbp subgenomes are deletion-biased relative to the diploids. Not yet tested for
+significance or controlled for assembly differences.
+
+## Caveats
+- 38k of 81k diploid x Cbp indel events and ~11k of 18k diploid-diploid events stay
+  ambiguous (`none`); about 32% of all diploid x Cbp events (~62% of decided calls) are
+  single-frame. Filter on `confidence`.
+- 'Conflict' calls (~5%) are excluded from the table.
+- Diploid lineage totals include the larger CoMosher/CgMosher assemblies (extra TE
+  insertions); pairs share genomes so counts are not independent.
+- Cross-species Co x Cr/Cg pairs are not themselves polarized (no outgroup); only
+  summarized in `results/00_cross_summary/`.
+- Structural variant calls (INV/TRANS/INVTR) are mostly ambiguous and not reviewed here.
+
+## Plots
+    Rscript scripts/002_plots.R     # -> results/02_plots/*.png|pdf
+`indel_by_lineage` (del vs ins per lineage, both-frame vs single-frame),
+`indel_ratio_per_pair` (ins:del per pair; Mosher pairs marked; the Cbp-Co lineage is
+bimodal across pairs, ~0.35 vs ~1.5), `outcome_mix` (both / single-frame / ambiguous /
+conflict by pair class). Descriptive only.
