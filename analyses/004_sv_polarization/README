@@ -61,10 +61,18 @@ significance or controlled for assembly differences.
 
 ## Caveats
 - 38k of 81k diploid x Cbp indel events and ~11k of 18k diploid-diploid events stay
-  ambiguous (`none`); about a third of diploid x Cbp calls are single-frame. Filter on `confidence`.
+  ambiguous (`none`); about 32% of all diploid x Cbp events (~62% of decided calls) are
+  single-frame. Filter on `confidence`.
 - 'Conflict' calls (~5%) are excluded from the table.
 - Diploid lineage totals include the larger CoMosher/CgMosher assemblies (extra TE
   insertions); pairs share genomes so counts are not independent.
 - Cross-species Co x Cr/Cg pairs are not themselves polarized (no outgroup); only
   summarized in `results/00_cross_summary/`.
 - Structural variant calls (INV/TRANS/INVTR) are mostly ambiguous and not reviewed here.
+
+## Plots
+    Rscript scripts/002_plots.R     # -> results/02_plots/*.png|pdf
+`indel_by_lineage` (del vs ins per lineage, both-frame vs single-frame),
+`indel_ratio_per_pair` (ins:del per pair; Mosher pairs marked; the Cbp-Co lineage is
+bimodal across pairs, ~0.35 vs ~1.5), `outcome_mix` (both / single-frame / ambiguous /
+conflict by pair class). Descriptive only.
