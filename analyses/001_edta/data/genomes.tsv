@@ -1,0 +1,7 @@
+Cbp2-2	/rhome/cfisc004/shared/CAPSELLA_GENOMES/genomes/Cbp2-2_plus_manual_correction.fasta	/rhome/cfisc004/shared/CAPSELLA_GENOMES/annotation/Cbp2-2.v1.gff	-
+Co39	/rhome/cfisc004/shared/CAPSELLA_GENOMES/genomes/Co39_plus_manual_correction.fasta	/rhome/cfisc004/shared/CAPSELLA_GENOMES/annotation/Co39.gff	-
+Cr145	/rhome/cfisc004/shared/CAPSELLA_GENOMES/genomes/Cr145_plus_manual_correction.fasta	/rhome/cfisc004/shared/CAPSELLA_GENOMES/annotation/Cr145.gff	-
+CbpRussian	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_BP_RUSSIAN/GCA_001974645.2_ASM197464v2/GCA_001974645.2_ASM197464v2_genomic.fna	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_BP_RUSSIAN/GCA_001974645.2_ASM197464v2/GCA_001974645.2_ASM197464v2_genomic.gff	-
+CgMosher	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_GRANDIFLORA_MOSHER/Cgrandiflora_hapA_RAM_v1.1.fa.gz	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_GRANDIFLORA_MOSHER/Cgrandiflora_hapA_RAM_exon_v3.2.gff3.gz	-
+CoMosher	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_ORIENTALIS_MOSHER/Corientalis_RAM_v1.1.fa.gz	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_ORIENTALIS_MOSHER/Corientalis_RAM_exon_v3.2.gff3.gz	-
+CrMosher	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_RUBELLA_MOSHER/Crubella_RAM_v1.1.fa.gz	/rhome/cfisc004/shared/GENOMES/CAPSELLA/OUTSIDE/CAPSELLA_RUBELLA_MOSHER/Crubella_RAM_exon_v3.2.gff3.gz	-

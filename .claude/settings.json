@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sacct *)",
+      "Bash(squeue *)",
+      "Bash(conda env list)",
+      "Bash(conda list)",
+      "Bash(conda list *)",
+      "Bash(seqkit seq -n *)",
+      "Bash(module avail *)",
+      "Bash(mamba --version)",
+      "Bash(seqkit fx2tab *)"
+    ]
+  }
+}

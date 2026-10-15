@@ -1,0 +1,6 @@
+# per-analysis outputs (large/regeneratable) and sbatch logs
+analyses/*/results/
+analyses/*/scripts/**/std/
+
+# session handoff notes — point-in-time, not meant to be committed
+analyses/*/HANDOFF.md
